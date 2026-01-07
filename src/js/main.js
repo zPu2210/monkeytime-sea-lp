@@ -16,11 +16,17 @@ function getUTMParams() {
 // DataLayer Push Helper
 // ===========================================
 function pushToDataLayer(event, data = {}) {
+    // GTM compatibility
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
         event: event,
         ...data
     });
+
+    // Direct GA4 compatibility (gtag.js)
+    if (typeof gtag === 'function') {
+        gtag('event', event, data);
+    }
 }
 
 // ===========================================
