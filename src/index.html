@@ -83,14 +83,17 @@
     class="bg-[#030712] text-white font-sans antialiased bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/40 via-gray-900 to-gray-950 min-h-screen flex flex-col">
 
     <!-- Header -->
-    <header class="fixed top-0 w-full z-40 bg-gray-950/80 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <img src="/assets/images/mascot.webp" alt="MonkeyTime" class="w-8 h-8 rounded-full">
-                <span class="font-bold text-lg tracking-tight">MonkeyTime</span>
+    <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl">
+        <div
+            class="bg-gray-950/70 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl px-6 py-3 flex justify-between items-center ring-1 ring-white/5">
+            <div class="flex items-center gap-3">
+                <img src="/assets/images/logo_new.png" alt="MonkeyTime"
+                    class="w-10 h-10 rounded-full border border-white/10 shadow-lg">
+                <span
+                    class="font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">MonkeyTime</span>
             </div>
             <a href="https://t.me/monkeytimebot/game"
-                class="bg-white/10 hover:bg-white/20 text-white text-sm font-semibold py-2 px-4 rounded-full transition-all border border-white/10"
+                class="bg-white hover:bg-gray-100 text-gray-900 text-sm font-bold py-2.5 px-6 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 data-cta="header">
                 Launch App
             </a>
@@ -98,7 +101,7 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section id="hero" class="min-h-screen flex flex-col justify-center px-4 pt-24 pb-12 relative overflow-hidden">
+    <section id="hero" class="min-h-screen flex flex-col justify-center px-4 pt-32 pb-12 relative overflow-hidden">
         <!-- Decoration -->
         <div
             class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] -z-10">
@@ -154,11 +157,9 @@
             <!-- Hero Image/Mockup -->
             <div
                 class="mt-12 relative mx-auto max-w-xs md:max-w-sm rounded-[2.5rem] border-[8px] border-gray-800 bg-gray-900 shadow-2xl overflow-hidden transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
-                <div class="aspect-[9/19.5] bg-gray-800 w-full relative group">
-                    <img src="/assets/images/mascot.webp" alt="Game Preview"
-                        class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <span class="text-6xl animate-bounce">👇</span>
+                <div class="aspect-[9/16] bg-gray-800 w-full relative group">
+                    <img src="/assets/images/game_mockup.png" alt="Game Preview" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent pointer-events-none">
                     </div>
                 </div>
             </div>
