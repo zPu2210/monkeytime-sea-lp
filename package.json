@@ -1,0 +1,17 @@
+{
+  "name": "monkeytime-sea-lp",
+  "version": "1.0.0",
+  "description": "MonkeyTime SE Asia Landing Page",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --minify",
+    "build:html": "html-minifier --collapse-whitespace --remove-comments -o dist/index.html src/index.html",
+    "build:js": "terser src/js/main.js -o dist/js/main.js -c -m",
+    "build": "npm run build:css && npm run build:html && npm run build:js",
+    "dev": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "html-minifier": "^4.0.0",
+    "terser": "^5.0.0"
+  }
+}
