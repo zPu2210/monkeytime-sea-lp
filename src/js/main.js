@@ -55,13 +55,9 @@ function initCTATracking() {
 
             // Add UTM params to Telegram link
             const baseUrl = this.getAttribute('href');
-            // Handle cases where href might already have query params?
-            // Assuming simple URL or one that doesn't conflict yet.
 
             try {
                 const telegramUrl = new URL(baseUrl);
-                // Telegram startapp param usually takes one string, underscores preferred for separation if multiple
-                // original code: telegramUrl.searchParams.set('startapp', `utm_${utm.utm_source}_${utm.utm_content}`);
                 telegramUrl.searchParams.set('startapp', `utm_${utm.utm_source}_${utm.utm_content}`);
 
                 // Small delay to ensure tracking fires
@@ -71,7 +67,6 @@ function initCTATracking() {
                 }, 150);
             } catch (err) {
                 console.error("Error constructing Telegram URL", err);
-                // Fallback to default behavior if URL construction fails
             }
         });
     });
@@ -89,14 +84,12 @@ function initStickyCTA() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Hero is visible, hide sticky CTA (move it down)
                 stickyCTA.classList.add('translate-y-full');
             } else {
-                // Hero is not visible, show sticky CTA
                 stickyCTA.classList.remove('translate-y-full');
             }
         });
-    }, { threshold: 0.1 }); // Adjusted threshold for better sensitivity
+    }, { threshold: 0.1 });
 
     observer.observe(hero);
 }
@@ -140,6 +133,55 @@ function initTimeTracking() {
 }
 
 // ===========================================
+// Modal Logic
+// ===========================================
+function initModals() {
+    window.openModal = function (modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        modal.classList.remove('hidden');
+        // Small delay to allow display:block to apply before opacity transition
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            const content = modal.querySelector('div[class*="transform"]');
+            if (content) content.classList.remove('scale-95', 'opacity-0');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeModal = function (modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+
+        modal.classList.add('opacity-0');
+        const content = modal.querySelector('div[class*="transform"]');
+        if (content) content.classList.add('scale-95', 'opacity-0');
+
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+        document.body.style.overflow = '';
+    };
+
+    // Close on clicking outside
+    window.addEventListener('click', function (event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            const modalId = event.target.id;
+            window.closeModal(modalId);
+        }
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            const openModals = document.querySelectorAll('.modal-overlay:not(.hidden)');
+            openModals.forEach(modal => window.closeModal(modal.id));
+        }
+    });
+}
+
+// ===========================================
 // Initialize on DOM Ready
 // ===========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -158,4 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initStickyCTA();
     initScrollTracking();
     initTimeTracking();
+
+    // Initialize Modals
+    initModals();
 });
