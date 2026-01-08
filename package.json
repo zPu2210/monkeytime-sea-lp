@@ -6,7 +6,8 @@
     "build:css": "tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --minify",
     "build:html": "html-minifier --collapse-whitespace --remove-comments -o dist/index.html src/index.html",
     "build:js": "terser src/js/main.js -o dist/js/main.js -c -m",
-    "build": "npm run build:css && npm run build:html && npm run build:js",
+    "copy-assets": "cp -r src/assets dist/",
+    "build": "npm run build:css && npm run build:html && npm run build:js && npm run copy-assets",
     "dev": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
   },
   "devDependencies": {
