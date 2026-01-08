@@ -182,6 +182,39 @@ function initModals() {
 }
 
 // ===========================================
+// Live Player Counter
+// ===========================================
+function initLiveCounter() {
+    const counterEl = document.getElementById('player-count');
+    if (!counterEl) return;
+
+    // Market Standard: Start with a realistic base + random variance
+    // Base: 1,200 - 1,800
+    let currentCount = Math.floor(Math.random() * (1800 - 1200 + 1)) + 1200;
+
+    const updateDisplay = () => {
+        // Format with commas: 1,234+
+        counterEl.textContent = currentCount.toLocaleString() + '+';
+    };
+
+    updateDisplay();
+
+    // Simulate live fluctuations
+    setInterval(() => {
+        // Randomly decide to add or subtract players
+        // Bias slightly towards growth to look active (60% chance to add)
+        const change = Math.random() > 0.4 ? Math.floor(Math.random() * 3) + 1 : -Math.floor(Math.random() * 2);
+        currentCount += change;
+
+        // Keep within realistic bounds
+        if (currentCount < 1150) currentCount = 1200;
+        if (currentCount > 2500) currentCount = 2400;
+
+        updateDisplay();
+    }, 3000 + Math.random() * 2000); // Update every 3-5 seconds
+}
+
+// ===========================================
 // Initialize on DOM Ready
 // ===========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -203,4 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Modals
     initModals();
+
+    // Initialize Live Counter
+    initLiveCounter();
 });
